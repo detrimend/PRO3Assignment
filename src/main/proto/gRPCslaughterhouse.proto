@@ -1,4 +1,4 @@
 syntax = "proto3";
 option java_multiple_files = true;
 
-package grpcplanets;
+package grpcslaughterhouse;
