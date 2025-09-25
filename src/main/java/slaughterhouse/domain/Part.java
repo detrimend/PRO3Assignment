@@ -7,9 +7,9 @@ public class Part
   private double Weight;
   private int animalId;
   private int id;
-  private static int nextId = 1;
+  private static int nextId = 0;
 
-  public Part(String type, double weight, int animalId, int id)
+  public Part(String type, double weight, int animalId)
   {
     Type = type;
     Weight = weight;
