@@ -7,13 +7,14 @@ public class Part
   private double Weight;
   private int animalId;
   private int id;
+  private static int nextId = 1;
 
   public Part(String type, double weight, int animalId, int id)
   {
     Type = type;
     Weight = weight;
     this.animalId = animalId;
-    this.id = id;
+    this.id = nextId++;
   }
 
   public String getType()
