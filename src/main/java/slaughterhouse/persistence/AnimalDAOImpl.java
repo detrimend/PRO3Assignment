@@ -87,6 +87,37 @@ public class AnimalDAOImpl implements AnimalDAO
     }
   }
 
+  @Override public Animal[] getAllAnimalsByProduct(int productId)
+  {
+    final String sql =
+        "SELECT DISTINCT a.id, a.weight " +
+        "FROM product_trays pt " +
+        "JOIN tray_parts tp ON tp.tray_id = pt.tray_id " +
+        "JOIN parts p ON p.id = tp.part_id " +
+        "JOIN animals a ON a.id = p.animal_id " +
+        "WHERE pt.product_id = ? " +
+        "ORDER BY a.id";
+
+    try (Connection con = instance.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql))
+    {
+      ps.setInt(1, productId);
+      try (ResultSet rs = ps.executeQuery())
+      {
+        List<Animal> result = new ArrayList<>();
+        while (rs.next())
+        {
+          result.add(mapRow(rs));
+        }
+        return result.toArray(new Animal[0]);
+      }
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException("Failed to fetch Animals for product id=" + productId, e);
+    }
+  }
+
   private Animal mapRow(ResultSet rs) throws SQLException
   {
     double weight = rs.getDouble("weight");

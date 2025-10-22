@@ -97,6 +97,37 @@ public class ProductDAOImpl implements ProductDAO
     return opt;
   }
 
+  @Override public Product[] getAllProductsByAnimal(int animalId)
+  {
+    final String sql =
+        "SELECT DISTINCT pr.id, pr.product_type " +
+            "FROM parts pa " +
+            "JOIN tray_parts tp ON tp.part_id = pa.id " +
+            "JOIN product_trays pt ON pt.tray_id = tp.tray_id " +
+            "JOIN products pr ON pr.id = pt.product_id " +
+            "WHERE pa.animal_id = ? " +
+            "ORDER BY pr.id";
+
+    try (Connection con = instance.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql))
+    {
+      ps.setInt(1, animalId);
+      try (ResultSet rs = ps.executeQuery())
+      {
+        List<Product> result = new ArrayList<>();
+        while (rs.next())
+        {
+          result.add(mapRow(rs));
+        }
+        return result.toArray(new Product[0]);
+      }
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException("Failed to fetch Products for animal id=" + animalId, e);
+    }
+  }
+
   private Product mapRow(ResultSet rs) throws SQLException
   {
     int id = rs.getInt("id");

@@ -7,13 +7,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.IntFunction;
 
-public interface ProductDAO {
-    Optional<Product> findById(int id);
+public interface ProductDAO
+{
+  Optional<Product> findById(int id);
 
-    List<Product> findAll();
+  List<Product> findAll();
 
-    List<Product> findByType(String productType);
+  List<Product> findByType(String productType);
 
-    // Loads Product and populates trayMap using a provided tray loader by id.
-    Optional<Product> findByIdWithTrays(int id, IntFunction<Tray> trayLoader);
+  // Loads Product and populates trayMap using a provided tray loader by id.
+  Optional<Product> findByIdWithTrays(int id, IntFunction<Tray> trayLoader);
+
+  Product[] getAllProductsByAnimal(int animalId);
 }
