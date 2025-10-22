@@ -2,3 +2,41 @@ syntax = "proto3";
 option java_multiple_files = true;
 
 package grpcslaughterhouse;
+
+message DTOAnimal
+{
+  int32 id = 1;
+  double weight = 2;
+}
+
+message GetAllAnimalsForProductRequest
+{
+  int32 id = 1;
+}
+
+message GetAllAnimalsForProductResponse
+{
+  repeated DTOAnimal animals = 1;
+}
+
+message DTOProduct
+{
+  string productType = 1;
+  int32 id = 2;
+}
+
+message GetAllProductsForAnimalRequest
+{
+  int32 id = 1;
+}
+
+message GetAllProductsForAnimalResponse
+{
+  repeated DTOProduct products = 1;
+}
+
+service SlaughterhouseService
+{
+  rpc GetAllAnimalsForProduct (GetAllAnimalsForProductRequest) returns (GetAllAnimalsForProductResponse);
+  rpc GetAllProductsForAnimal (GetAllProductsForAnimalRequest) returns (GetAllProductsForAnimalResponse);
+}
