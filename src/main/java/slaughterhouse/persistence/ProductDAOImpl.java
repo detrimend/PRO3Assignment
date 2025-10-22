@@ -27,6 +27,15 @@ public class ProductDAOImpl implements ProductDAO
         "postgres", "123");
   }
 
+  public static ProductDAOImpl getInstance() throws SQLException
+  {
+    if (instance == null)
+    {
+      instance = new ProductDAOImpl();
+    }
+    return instance;
+  }
+
   @Override public Optional<Product> findById(int id)
   {
     final String sql = "SELECT id, product_type FROM products WHERE id = ?";

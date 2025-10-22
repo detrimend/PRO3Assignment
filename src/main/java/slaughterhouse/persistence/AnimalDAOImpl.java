@@ -24,6 +24,15 @@ public class AnimalDAOImpl implements AnimalDAO
         "postgres", "123");
   }
 
+  public static AnimalDAOImpl getInstance() throws SQLException
+  {
+    if (instance == null)
+    {
+      instance = new AnimalDAOImpl();
+    }
+    return instance;
+  }
+
   @Override public Optional<Animal> findById(int id)
   {
     final String sql = "SELECT id, weight FROM animals WHERE id = ?";
