@@ -12,10 +12,10 @@ public class Animal
         this.weight = weight;
     }
 
-    public Animal(double weight, int id)
+    public Animal(int id, double weight)
     {
-        this.weight = weight;
         this.id = id;
+        this.weight = weight;
     }
 
     public int getId()

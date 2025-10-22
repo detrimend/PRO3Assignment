@@ -2,7 +2,6 @@ package slaughterhouse.persistence;
 
 import slaughterhouse.domain.Animal;
 
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,21 +128,8 @@ public class AnimalDAOImpl implements AnimalDAO
 
   private Animal mapRow(ResultSet rs) throws SQLException
   {
-    double weight = rs.getDouble("weight");
     int id = rs.getInt("id");
-
-    // Construct and inject DB id (Animal lacks an id-setting constructor/setter)
-    Animal animal = new Animal(weight);
-    try
-    {
-      Field idField = Animal.class.getDeclaredField("id");
-      idField.setAccessible(true);
-      idField.setInt(animal, id);
-    }
-    catch (ReflectiveOperationException ex)
-    {
-      throw new SQLException("Failed to map Animal.id via reflection", ex);
-    }
-    return animal;
+    double weight = rs.getDouble("weight");
+    return new Animal(id, weight);
   }
 }

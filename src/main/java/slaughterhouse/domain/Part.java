@@ -17,6 +17,14 @@ public class Part
     this.id = nextId++;
   }
 
+  public Part(int id, String type, double weight, int animalId)
+  {
+    Type = type;
+    Weight = weight;
+    this.animalId = animalId;
+    this.id = id;
+  }
+
   public String getType()
   {
     return Type;

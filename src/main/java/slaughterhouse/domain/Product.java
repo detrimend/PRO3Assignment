@@ -27,6 +27,12 @@ public class Product {
         trayMap = new HashMap<>();
     }
 
+    public Product (String productType, int id) {
+        this.productType = productType;
+        this.id = id;
+        trayMap = new HashMap<>();
+    }
+
   public String getType()
   {
     return productType;

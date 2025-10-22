@@ -141,9 +141,7 @@ public class ProductDAOImpl implements ProductDAO
   {
     int id = rs.getInt("id");
     String type = rs.getString("product_type");
-    Product product = new Product(type); // constructor increments in-memory id
-    product.setId(id);                   // override with DB id
-    return product;
+    return new Product(type, id);
   }
 
   private void loadTrayMap(Product product, IntFunction<Tray> trayLoader)
