@@ -60,6 +60,26 @@ public class DTOFactory
     return GetAnimalsResponse.newBuilder().addAllAnimals(list).build();
   }
 
+ public static Animal createAnimal(DTOAnimal dtoAnimal)
+    {
+        return new Animal(
+            dtoAnimal.getWeight()
+        );
+    }
+    public static Animal createAnimal(GetAnimalsResponse r)
+    {
+        return createAnimal(r.getAnimals(0));
+    }
+
+  public static Animal [] createAnimals(GetAnimalsResponse r)
+  {
+      Animal[] res= new Animal[r.getAnimalsCount()];
+        for(int i=0;i<r.getAnimalsCount();i++)
+            res[i] = createAnimal(r.getAnimals(i));
+      return res;
+
+  }
+
   public static GetProductsRequest createGetProductsRequest()
   {
     return GetProductsRequest.newBuilder().build();
