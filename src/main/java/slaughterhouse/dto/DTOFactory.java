@@ -1,9 +1,10 @@
 package slaughterhouse.dto;
 
-import grpcslaughterhouse.DTOAnimal;
-import grpcslaughterhouse.DTOProduct;
+import grpcslaughterhouse.*;
 import slaughterhouse.domain.Animal;
-import slaughterhouse.domain.Part;
+import slaughterhouse.domain.Product;
+
+import java.util.ArrayList;
 
 public class DTOFactory
 {
@@ -15,12 +16,50 @@ public class DTOFactory
         .build();
   }
 
-  public static DTOProduct createDTOProduct(Part part)
+  public static DTOProduct createDTOProduct(Product product)
   {
     return DTOProduct.newBuilder()
-        .setProductType(part.getType())
-        .setId(part.getId())
+        .setProductType(product.getType())
+        .setId(product.getId())
         .build();
   }
 
+  public static GetAllAnimalsForProductRequest createGetAllAnimalsForProductRequest(int productId)
+  {
+    return GetAllAnimalsForProductRequest.newBuilder()
+        .setId(productId)
+        .build();
+  }
+
+ public static GetAllAnimalsForProductResponse createGetAllAnimalsForProductResponse(Animal[] animals)
+ {
+   ArrayList<DTOAnimal> list = new ArrayList<>();
+   for(Animal a: animals)
+     list.add(DTOAnimal.newBuilder()
+         .setId(a.getId())
+         .setWeight(a.getWeight())
+         .build());
+
+   return GetAllAnimalsForProductResponse.newBuilder().addAllAnimals(list).build();
+ }
+
+  public static GetAllProductsForAnimalRequest createGetAllProductsForAnimalRequest(
+      int animalId)
+  {
+    return GetAllProductsForAnimalRequest.newBuilder()
+        .setId(animalId)
+        .build();
+  }
+
+  public static GetAllProductsForAnimalResponse createGetAllProductsForAnimalResponse(Product[] products)
+  {
+    ArrayList<DTOProduct> list = new ArrayList<>();
+    for(Product p: products)
+      list.add(DTOProduct.newBuilder()
+          .setProductType(p.getType())
+          .setId(p.getId())
+          .build());
+
+    return GetAllProductsForAnimalResponse.newBuilder().addAllProducts(list).build();
+  }
 }

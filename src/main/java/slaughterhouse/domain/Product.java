@@ -6,7 +6,18 @@ import java.util.Map;
 
 public class Product {
     private String productType;
-    private int id;
+
+  public int getId()
+  {
+    return id;
+  }
+
+  public void setId(int id)
+  {
+    this.id = id;
+  }
+
+  private int id;
     private HashMap<Tray, String> trayMap;
     private static int nextID = 0;
 
@@ -16,5 +27,13 @@ public class Product {
         trayMap = new HashMap<>();
     }
 
+  public String getType()
+  {
+    return productType;
+  }
 
+  public void setType(String productType)
+  {
+    this.productType = productType;
+  }
 }
