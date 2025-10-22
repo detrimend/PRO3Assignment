@@ -80,6 +80,15 @@ public class DTOFactory
 
   }
 
+    public static Animal [] createAnimalsForProduct(GetAllAnimalsForProductResponse r)
+    {
+        Animal[] res= new Animal[r.getAnimalsCount()];
+        for(int i=0;i<r.getAnimalsCount();i++)
+            res[i] = createAnimal(r.getAnimals(i));
+        return res;
+
+    }
+
   public static GetProductsRequest createGetProductsRequest()
   {
     return GetProductsRequest.newBuilder().build();

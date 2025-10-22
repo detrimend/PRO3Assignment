@@ -1,8 +1,6 @@
 package slaughterhouse.client;
 
-import grpcslaughterhouse.GetAnimalsRequest;
-import grpcslaughterhouse.GetAnimalsResponse;
-import grpcslaughterhouse.SlaughterhouseServiceGrpc;
+import grpcslaughterhouse.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import slaughterhouse.domain.Animal;
@@ -27,36 +25,36 @@ public class SlaughterhouseClient
 
     private void run()
     {
-        Animal[] animals = getPlanets();
+        Animal[] animals = getAllAnimalsForProduct(4);
 
-        for( Planet p: planets ) {
-            System.out.println(p.getName() + " " + p.getDistanceToTheSun() + " " + p.getRadius());
+        for( Animal a: animals ) {
+            System.out.println(a.getId() + " " + a.getWeight());
 
-            Moon[] moons = getAllMoonsForPlanet( p.getName() );
-
-            for (Moon m : moons)
-                System.out.println("     " + m.getName() + " " + m.getDiscovered() + " " + m.getPlanet());
-
-            System.out.println();
+//            Moon[] moons = getAllMoonsForPlanet( p.getName() );
+//
+//            for (Moon m : moons)
+//                System.out.println("     " + m.getName() + " " + m.getDiscovered() + " " + m.getPlanet());
+//
+//            System.out.println();
         }
 
         managedChannel.shutdown();
     }
 
 
-    private Planet getPlanet(String name )
-    {
-        try {
-            GetPlanetRequest request = DTOFactory.createGetPlanetRequest(name);
-            GetPlanetResponse response = stub.getPlanet(request);
-
-            return DTOFactory.createPlanet(response);
-        } catch( Exception ex ) {
-            ex.printStackTrace();
-
-            return null;
-        }
-    }
+//    private Planet getPlanet(String name )
+//    {
+//        try {
+//            GetPlanetRequest request = DTOFactory.createGetPlanetRequest(name);
+//            GetPlanetResponse response = stub.getPlanet(request);
+//
+//            return DTOFactory.createPlanet(response);
+//        } catch( Exception ex ) {
+//            ex.printStackTrace();
+//
+//            return null;
+//        }
+//    }
 
 
     private Animal[] getAnimals()
@@ -73,49 +71,61 @@ public class SlaughterhouseClient
         }
     }
 
-
-    private Moon getMoon(String name )
+    private Animal[] getAllAnimalsForProduct(int productId)
     {
         try {
-            GetMoonRequest request = DTOFactory.createGetMoonRequest(name);
-            GetMoonResponse response = stub.getMoon(request);
+            GetAllAnimalsForProductRequest request = DTOFactory.createGetAllAnimalsForProductRequest(productId);
+            GetAllAnimalsForProductResponse response = stub.getAllAnimalsForProduct(request);
 
-            return DTOFactory.createMoon(response);
+            return DTOFactory.createAnimalsForProduct(response);
         } catch( Exception ex ) {
             ex.printStackTrace();
 
-            return null;
+            return new Animal[0];
         }
     }
+//    private Moon getMoon(String name )
+//    {
+//        try {
+//            GetMoonRequest request = DTOFactory.createGetMoonRequest(name);
+//            GetMoonResponse response = stub.getMoon(request);
+//
+//            return DTOFactory.createMoon(response);
+//        } catch( Exception ex ) {
+//            ex.printStackTrace();
+//
+//            return null;
+//        }
+//    }
+//
+//
+//    private Moon[] getMoons()
+//    {
+//        try {
+//            GetMoonsRequest request = DTOFactory.createGetMoonsRequest();
+//            GetMoonsResponse response = stub.getMoons(request);
+//
+//            return DTOFactory.createMoons(response);
+//        } catch( Exception ex ) {
+//            ex.printStackTrace();
+//
+//            return new Moon[0];
+//        }
+//    }
+//
+//
+//    private Moon[] getAllMoonsForPlanet( String name )
+//    {
+//        try {
+//            GetAllMoonsForPlanetRequest request = DTOFactory.createGetAllMoonsForPlanetRequest( name );
+//            GetAllMoonsForPlanetResponse response = stub.getAllMoonsForPlanet(request);
+//
+//            return DTOFactory.createMoons(response);
+//        } catch( Exception ex ) {
+//            ex.printStackTrace();
+//
+//            return new Moon[0];
+//        }
+//    }
 
-
-    private Moon[] getMoons()
-    {
-        try {
-            GetMoonsRequest request = DTOFactory.createGetMoonsRequest();
-            GetMoonsResponse response = stub.getMoons(request);
-
-            return DTOFactory.createMoons(response);
-        } catch( Exception ex ) {
-            ex.printStackTrace();
-
-            return new Moon[0];
-        }
-    }
-
-
-    private Moon[] getAllMoonsForPlanet( String name )
-    {
-        try {
-            GetAllMoonsForPlanetRequest request = DTOFactory.createGetAllMoonsForPlanetRequest( name );
-            GetAllMoonsForPlanetResponse response = stub.getAllMoonsForPlanet(request);
-
-            return DTOFactory.createMoons(response);
-        } catch( Exception ex ) {
-            ex.printStackTrace();
-
-            return new Moon[0];
-        }
-    }
-}
 }

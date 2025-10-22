@@ -12,6 +12,12 @@ public class Animal
         this.weight = weight;
     }
 
+    public Animal(double weight, int id)
+    {
+        this.weight = weight;
+        this.id = id;
+    }
+
     public int getId()
     {
         return id;
