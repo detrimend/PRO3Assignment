@@ -1,5 +1,6 @@
 package slaughterhouse.persistence;
 
+import org.springframework.stereotype.Repository;
 import slaughterhouse.domain.Animal;
 
 import java.sql.*;
