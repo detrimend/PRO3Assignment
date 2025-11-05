@@ -8,12 +8,12 @@ import slaughterhouse.persistence.ProductDAO;
 @RestController
 public class RESTfulController
 {
-  private AnimalDAO animalDao;
-  private ProductDAO productDao;
+  public AnimalDAO animalDao;
+  public ProductDAO productDao;
 
-//  @Autowired
-//  public RESTfulController(AnimalDAO animalDao, ProductDAO productDao) {
-//    this.animalDao = animalDao;
-//    this.productDao = productDao;
-//  }
+  @Autowired
+  public RESTfulController(AnimalDAO animalDao, ProductDAO productDao) {
+   this.animalDao = animalDao;
+   this.productDao = productDao;
+  }
 }
