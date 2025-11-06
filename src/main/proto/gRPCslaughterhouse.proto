@@ -9,6 +9,7 @@ message DTOAnimal
   int32 id = 1;
   double weight = 2;
   string origin = 3;
+  string arrivalDate=4;
 }
 
 message GetAnimalsRequest

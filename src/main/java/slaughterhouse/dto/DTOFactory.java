@@ -57,7 +57,7 @@ public class DTOFactory
 
   public static Animal createAnimal(DTOAnimal dtoAnimal)
   {
-    return new Animal(dtoAnimal.getId(), dtoAnimal.getWeight(), dtoAnimal.getOrigin());
+    return new Animal(dtoAnimal.getId(), dtoAnimal.getWeight(), dtoAnimal.getOrigin(), dtoAnimal.getArrivalDate());
   }
 
   public static Animal createAnimal(GetAnimalsResponse r)

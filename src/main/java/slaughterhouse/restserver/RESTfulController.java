@@ -43,7 +43,7 @@ public class RESTfulController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/animals/{arrivalDate}")
+    @GetMapping("/animals/date/{arrivalDate}")
     public ResponseEntity<Animal> getAnimalByDate(@PathVariable String arrivalDate) {
         return animalDao.findByDate(arrivalDate)
                 .map(animal -> new ResponseEntity<>(animal, HttpStatus.OK))

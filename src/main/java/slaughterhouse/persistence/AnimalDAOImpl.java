@@ -67,7 +67,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 
     @Override
     public List<Animal> findAll() {
-        final String sql = "SELECT id, weight, origin FROM animals ORDER BY id";
+        final String sql = "SELECT id, weight, origin, arrival_date FROM animals ORDER BY id";
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -146,7 +146,8 @@ public class AnimalDAOImpl implements AnimalDAO {
         int id = rs.getInt("id");
         double weight = rs.getDouble("weight");
         String origin = rs.getString("origin");
+        String arrivalDate = rs.getString("arrival_date");
 
-        return new Animal(id, weight, origin);
+        return new Animal(id, weight, origin, arrivalDate);
     }
 }

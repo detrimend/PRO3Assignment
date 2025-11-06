@@ -10,6 +10,7 @@ public class Animal
     private int id;
     private double weight;
     private String origin;
+    private String arrivalDate;
 
 
     public Animal(){}
@@ -21,11 +22,12 @@ public class Animal
         this.origin = origin;
     }
 
-    public Animal(int id, double weight, String origin)
+    public Animal(int id, double weight, String origin, String arrivalDate)
     {
         this.id = id;
         this.weight = weight;
         this.origin = origin;
+        this.arrivalDate = arrivalDate;
 
     }
 
@@ -43,7 +45,13 @@ public class Animal
         return origin;
     }
 
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
 
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
 
     public void setId(int id) {
         this.id = id;
