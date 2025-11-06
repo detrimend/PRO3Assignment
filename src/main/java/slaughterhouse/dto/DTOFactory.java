@@ -11,7 +11,9 @@ public class DTOFactory
   public static DTOAnimal createDTOAnimal(Animal animal)
   {
     return DTOAnimal.newBuilder().setId(animal.getId())
-        .setWeight(animal.getWeight()).build();
+        .setWeight(animal.getWeight())
+            .setOrigin(animal.getOrigin())
+           .build();
   }
 
   public static DTOProduct createDTOProduct(Product product)
@@ -55,7 +57,7 @@ public class DTOFactory
 
   public static Animal createAnimal(DTOAnimal dtoAnimal)
   {
-    return new Animal(dtoAnimal.getId(), dtoAnimal.getWeight());
+    return new Animal(dtoAnimal.getId(), dtoAnimal.getWeight(), dtoAnimal.getOrigin());
   }
 
   public static Animal createAnimal(GetAnimalsResponse r)

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.IntFunction;
-
+@Repository
 public class ProductDAOImpl implements ProductDAO
 {
   private static ProductDAOImpl instance;

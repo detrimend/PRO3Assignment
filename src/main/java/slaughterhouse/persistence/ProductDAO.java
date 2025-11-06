@@ -1,13 +1,14 @@
 package slaughterhouse.persistence;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import slaughterhouse.domain.Product;
 import slaughterhouse.domain.Tray;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.IntFunction;
-@Component
+
 public interface ProductDAO
 {
   Optional<Product> findById(int id);

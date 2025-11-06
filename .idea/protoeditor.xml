@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProtobufLanguageSettings">
+    <option name="importPathEntries">
+      <list>
+        <ImportPathEntry>
+          <option name="location" value="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.25.8/protobuf-java-3.25.8.jar!/google/protobuf" />
+        </ImportPathEntry>
+        <ImportPathEntry>
+          <option name="location" value="jar://$MAVEN_REPOSITORY$/com/google/api/grpc/proto-google-common-protos/2.59.2/proto-google-common-protos-2.59.2.jar!/google/type" />
+        </ImportPathEntry>
+      </list>
+    </option>
+  </component>
+</project>
