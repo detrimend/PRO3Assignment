@@ -13,7 +13,7 @@ public interface AnimalDAO
 {
   Optional<Animal> findById(int id);
 
-  Optional<Animal> findByDate(String Date);
+  List<Animal> findByDate(String Date);
 
   List<Animal> findAll();
 

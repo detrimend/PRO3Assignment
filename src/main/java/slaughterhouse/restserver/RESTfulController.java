@@ -44,10 +44,9 @@ public class RESTfulController {
     }
 
     @GetMapping("/animals/date/{arrivalDate}")
-    public ResponseEntity<Animal> getAnimalByDate(@PathVariable String arrivalDate) {
-        return animalDao.findByDate(arrivalDate)
-                .map(animal -> new ResponseEntity<>(animal, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<List<Animal>> getAnimalByDate(@PathVariable String arrivalDate) {
+        List<Animal> dateAnimals =  animalDao.findByDate(arrivalDate);
+        return new ResponseEntity<>( dateAnimals, HttpStatus.OK);
     }
 
 

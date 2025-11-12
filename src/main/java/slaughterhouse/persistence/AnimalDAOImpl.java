@@ -51,13 +51,17 @@ public class AnimalDAOImpl implements AnimalDAO {
     }
 
     @Override
-    public Optional<Animal> findByDate(String date) {
+    public List<Animal> findByDate(String date) {
         final String sql = "SELECT id, weight, origin, arrival_date FROM animals WHERE arrival_date = ?";
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, date);
+            List<Animal> result = new ArrayList<>();
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next() ? Optional.of(mapRow(rs)) : Optional.empty();
+                while (rs.next() ){
+                    result.add(mapRow(rs));
+                }
+                return result;
             }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch Animal by date=" + date, e);
